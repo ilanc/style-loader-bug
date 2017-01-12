@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        float: left;
+        border: 1px solid black;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Demo style-loader module.id overlap issue with webpack.DllPlugin</h1>
+    <pre>
+The left box below should be lightblue (set in dll1.css).
+
+However when the app.css is loaded the module.id of app.css (in build/app.js) overlaps with the module.id of dll1.css (in build/dll1.js) 
+and hence the style-loader removes dll1.css and replaces it with app.css.
+
+You can see this if you open the dev tools and reload the page. You'll hit a debugger statement just after dll1.js is loaded (i.e. require('./dll1.js')) at which point the box is lightblue.
+Run the next line - i.e. require('./app.css') - and the style-loader will replace dll1.css with app.css in the &lt;head&gt;
+    </pre>
+
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div style="clear:both;"></div>
+
+    <p>Note I had to use offset.js in order to get the modules.ids of the 2 .css files to overlap in the 2 build/ bundles. You can see the module.ids in the "npm run build" output, or just open the build files in an editor:</p>
+    <pre>
+$ npm run build
+
+> style-loader-bug@1.0.0 build D:\dev\js\style-loader-bug
+> npm-run-all build-dll1 build-app
+
+
+> style-loader-bug@1.0.0 build-dll1 D:\dev\js\style-loader-bug
+> webpack --display-modules --config src/webpack.dll1.config.js
+
+Hash: f219c109c4871322b59a
+Version: webpack 1.14.0
+Time: 681ms
+  Asset   Size  Chunks             Chunk Names
+dll1.js  12 kB       0  [emitted]  dll1
+   [0] dll dll1 12 bytes {0} [built]
+   [1] ./src/dll1.js 139 bytes {0} [built]
+   [2] ./src/offset.js 25 bytes {0} [built]
+   <span style="color:red;">[3] ./src/dll1.css 904 bytes {0} [built]</span>
+   [4] ./~/css-loader!./src/dll1.css 212 bytes {0} [built]
+   [5] ./~/css-loader/lib/css-base.js 1.51 kB {0} [built]
+   [6] ./~/style-loader/addStyles.js 7.15 kB {0} [built]
+
+> style-loader-bug@1.0.0 build-app D:\dev\js\style-loader-bug
+> webpack --display-modules --config src/webpack.app.config.js
+
+Hash: f3205d8030a9fa80b042
+Version: webpack 1.14.0
+Time: 620ms
+ Asset     Size  Chunks             Chunk Names
+app.js  3.09 kB       0  [emitted]  main
+   [0] ./src/app.js 55 bytes {0} [built]
+   <span style="color:red;">[3] ./src/app.css 901 bytes {0} [built]</span>
+   [4] ./~/css-loader!./src/app.css 213 bytes {0} [built]
+    + 4 hidden modules
+    </pre>    
+    <script src="/build/dll1.js"></script>
+    <script type="text/javascript" src="/build/app.js"></script>
+  </body>
+</html>

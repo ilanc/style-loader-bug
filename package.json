@@ -1,0 +1,28 @@
+{
+  "name": "style-loader-bug",
+  "version": "1.0.0",
+  "description": "Demo of style-loader module.id overlap issue with webpack.DllPlugin",
+  "main": "app.js",
+  "keywords": [
+    "build",
+    "demo",
+    "webpack"
+  ],
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "npm-run-all build-dll1 build-app",
+    "build-dll1": "webpack --display-modules --config src/webpack.dll1.config.js",
+    "build-app": "webpack --display-modules --config src/webpack.app.config.js"
+  },
+  "author": "Ilan Copelyn",
+  "license": "MIT",
+  "dependencies": {},
+  "repository": "ilanc/style-loader-bug",
+  "devDependencies": {
+    "css-loader": "0.26.1",
+    "npm-run-all": "^4.0.0",
+    "style-loader": "0.13.1",
+    "webpack": "1.14.0",
+    "webpack-dev-server": "1.16.2"
+  }
+}
