@@ -51,9 +51,9 @@ var dll1 =
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
-	console.log('1.js');
-	__webpack_require__(2); // so that module.id's overlap in build/dll1.js and build/app.js
-	__webpack_require__(3);console.log('1.css loaded');
+	console.log('dll1.js');
+	__webpack_require__(2); // so that module.id's overlap in /build/dll1.js and /build/app.js
+	__webpack_require__(3);
 
 /***/ },
 /* 2 */
@@ -77,8 +77,8 @@ var dll1 =
 	if(false) {
 		// When the styles change, update the <style> tags
 		if(!content.locals) {
-			module.hot.accept("!!./../node_modules/css-loader/index.js!./1.css", function() {
-				var newContent = require("!!./../node_modules/css-loader/index.js!./1.css");
+			module.hot.accept("!!./../node_modules/css-loader/index.js!./dll1.css", function() {
+				var newContent = require("!!./../node_modules/css-loader/index.js!./dll1.css");
 				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 				update(newContent);
 			});
@@ -96,7 +96,7 @@ var dll1 =
 
 
 	// module
-	exports.push([module.id, "/* 1.css */\r\n.box1 { background-color: lightblue; }", ""]);
+	exports.push([module.id, "/* dll1.css */\r\n.box1 { background-color: lightblue; }", ""]);
 
 	// exports
 

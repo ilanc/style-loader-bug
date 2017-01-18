@@ -18,7 +18,7 @@ module.exports = {
       ]
   },
   output: {
-      path: '/build/',
+      path: 'build/',
       publicPath: '/build/',
       filename: "dll1.js",
       library: "dll1"     
@@ -30,7 +30,7 @@ module.exports = {
   },
   plugins: [
     new webpack.DllPlugin({
-      path: '/build/dll1-manifest.json',
+      path: 'build/dll1-manifest.json',
       name: 'dll1'
     })
   ]

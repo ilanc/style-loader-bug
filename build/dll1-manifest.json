@@ -1,11 +1,11 @@
 {
   "name": "dll1",
   "content": {
-    "./1.js": 1,
-    "./offset.js": 2,
-    "./1.css": 3,
-    "../node_modules/css-loader/index.js!./1.css": 4,
-    "../node_modules/css-loader/lib/css-base.js": 5,
-    "../node_modules/style-loader/addStyles.js": 6
+    "./src/dll1.js": 1,
+    "./src/offset.js": 2,
+    "./src/dll1.css": 3,
+    "./node_modules/css-loader/index.js!./src/dll1.css": 4,
+    "./node_modules/css-loader/lib/css-base.js": 5,
+    "./node_modules/style-loader/addStyles.js": 6
   }
 }
