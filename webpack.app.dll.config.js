@@ -25,7 +25,7 @@ module.exports = {
   plugins: [
     new webpack.DllReferencePlugin({
       context: ".",
-      manifest: require("/build/dll1-manifest.json")
+      manifest: require("./build/dll1-manifest.json")
     })
   ]
 };

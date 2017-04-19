@@ -10,9 +10,10 @@
   ],
   "scripts": {
     "start": "webpack-dev-server",
-    "build": "npm-run-all build-dll1 build-app",
-    "build-dll1": "webpack --display-modules --config src/webpack.dll1.config.js",
-    "build-app": "webpack --display-modules --config src/webpack.app.config.js"
+    "build": "npm-run-all build-dll1 build-app-dll build-app-style",
+    "build-dll1": "webpack --display-modules --config webpack.dll1.config.js",
+    "build-app-dll": "webpack --display-modules --config webpack.app.dll.config.js",
+    "build-app-style": "webpack --display-modules --config webpack.app.style.config.js"
   },
   "author": "Ilan Copelyn",
   "license": "MIT",

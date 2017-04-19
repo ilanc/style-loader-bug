@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <style>
+      /* style[0] */
+      .box {
+        width: 100px;
+        height: 100px;
+        float: left;
+        border: 1px solid black;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    </style>
+    <style>
+      /* style[1] */
+      /* Offset used in order to make modle.id of app.css clash with style[2] below */
+      .offset { /* unused */
+        color: black;
+      }
+    </style>
+    <style>
+      /* style[2] */
+      .box1 { background-color: lightblue; }
+    </style>
+  </head>
+  <body>
+    <h1>Demo style-loader module.id overlap is NOT an issue with existing &lt;style&gt;</h1>
+<pre>
+The left box below is lightblue as expected
+.box1 is set in second &lt;style&gt; in .html
+.box1 is NOT overwritten when app.css is require()'d in app.js
+</pre>
+
+    <div class="box box1"></div>
+    <div class="box box2"></div>
+    <div style="clear:both;"></div>
+    <script type="text/javascript" src="/build/app.style.js"></script>
+  </body>
+</html>
